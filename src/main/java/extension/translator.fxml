@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<TabPane prefHeight="239.0" prefWidth="445.0" style="-fx-background-color: #fff;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="extension.TranslatorExtension">
+  <tabs>
+    <Tab text="Translator">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="191.0" prefWidth="478.0">
+               <children>
+                  <Button fx:id="isActiveBtn" layoutX="53.0" layoutY="145.0" mnemonicParsing="false" onAction="#startStop" prefHeight="28.0" prefWidth="332.0" text="Start" />
+                  <ComboBox fx:id="sourceLang" layoutX="256.0" layoutY="44.0" prefHeight="31.0" prefWidth="127.0" />
+                  <ComboBox fx:id="myLang" layoutX="53.0" layoutY="44.0" prefHeight="31.0" prefWidth="127.0" />
+                  <Text layoutX="262.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Language" />
+                  <Text layoutX="60.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Language" />
+               </children>
+            </AnchorPane>
+        </content>
+    </Tab>
+    <Tab text="Options">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pane layoutX="230.0" layoutY="22.0" prefHeight="125.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
+                     <children>
+                        <CheckBox fx:id="showOriginal" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Show original" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateOutgoing" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate outgoing" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateIncoming" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate incoming" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateWired" layoutX="14.0" layoutY="67.0" mnemonicParsing="false" selected="true" text="Translate wired" textOverrun="WORD_ELLIPSIS" />
+                     </children></Pane>
+                  <Label layoutX="245.0" layoutY="14.0" style="-fx-background-color: #fff;" text="Room chat" />
+                  <Pane layoutX="25.0" layoutY="22.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
+                     <children>
+                        <CheckBox fx:id="translateChatOut" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate outgoing" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateChatIn" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate incoming" textOverrun="WORD_ELLIPSIS" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="40.0" layoutY="14.0" style="-fx-background-color: #fff;" text="Private chat &amp; invitations" />
+                  <Pane layoutX="25.0" layoutY="118.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
+                     <children>
+                        <CheckBox fx:id="translateRoomInfo" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate room info" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateNavigator" disable="true" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate navigator" textOverrun="WORD_ELLIPSIS" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="40.0" layoutY="110.0" style="-fx-background-color: #fff;" text="Room info" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="API">
+          <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="rdArgos" layoutX="23.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Argos Open Tech">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tglAPI" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="rdMicrosoft" layoutX="23.0" layoutY="57.0" mnemonicParsing="false" text="Microsoft Translator" toggleGroup="$tglAPI" />
+                  <Pane fx:id="apiMicrosoftInfo" disable="true" layoutX="42.0" layoutY="84.0" prefHeight="72.0" prefWidth="228.0">
+                     <children>
+                        <TextField fx:id="apiMicrosoftKey" layoutX="61.0" layoutY="6.0" />
+                        <Label layoutX="10.0" layoutY="10.0" text="API key:" />
+                        <TextField fx:id="apiMicrosoftRegion" layoutX="61.0" layoutY="40.0" text="global" />
+                        <Label layoutX="10.0" layoutY="44.0" text="Region:" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="170.0" layoutY="57.0" text="-&gt; 2M free characters per month, fast" textFill="#000000ad" />
+                  <Label layoutX="170.0" layoutY="25.0" text="-&gt; Doesn't have Finnish &amp; Dutch, free but slow" textFill="#000000ad" />
+               </children></AnchorPane>
+          </content>
+      </Tab>
+  </tabs>
+</TabPane>
