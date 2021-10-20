@@ -25,7 +25,7 @@ import java.util.*;
 @ExtensionInfo(
         Title =  "G-Translator",
         Description =  "Translate the hotel",
-        Version =  "1.0",
+        Version =  "1.0.1",
         Author =  "sirjonasxx & Tripical"
 )
 public class TranslatorExtension extends ExtensionForm {

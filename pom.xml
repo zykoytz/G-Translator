@@ -7,7 +7,7 @@
     <groupId>gearthextensions</groupId>
     <artifactId>translator</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>1.0.1</version>
 
     <build>
         <resources>
@@ -33,7 +33,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addClasspath>true</addClasspath>
-                            <mainClass>TranslatorLauncher</mainClass>
+                            <mainClass>extension.TranslatorLauncher</mainClass>
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
@@ -58,7 +58,7 @@
                     <outputDirectory>${project.build.directory}/bin</outputDirectory>
                     <archive>
                         <manifest>
-                            <mainClass>TranslatorLauncher</mainClass>
+                            <mainClass>extension.TranslatorLauncher</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
