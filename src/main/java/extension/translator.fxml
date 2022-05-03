@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<TabPane prefHeight="239.0" prefWidth="445.0" style="-fx-background-color: #fff;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="extension.TranslatorExtension">
+<TabPane prefHeight="239.0" prefWidth="445.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="extension.TranslatorExtension">
   <tabs>
     <Tab text="Translator">
         <content>
@@ -13,8 +13,8 @@
                   <Button fx:id="isActiveBtn" layoutX="53.0" layoutY="145.0" mnemonicParsing="false" onAction="#startStop" prefHeight="28.0" prefWidth="332.0" text="Start" />
                   <ComboBox fx:id="sourceLang" layoutX="256.0" layoutY="44.0" prefHeight="31.0" prefWidth="127.0" />
                   <ComboBox fx:id="myLang" layoutX="53.0" layoutY="44.0" prefHeight="31.0" prefWidth="127.0" />
-                  <Text layoutX="262.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source Language" />
-                  <Text layoutX="60.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Language" />
+                  <Label layoutX="59.0" layoutY="24.0" text="Your Language" />
+                  <Label layoutX="265.0" layoutY="24.0" text="Source language" />
                </children>
             </AnchorPane>
         </content>
@@ -29,22 +29,22 @@
                         <CheckBox fx:id="translateOutgoing" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate outgoing" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateIncoming" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate incoming" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateWired" layoutX="14.0" layoutY="67.0" mnemonicParsing="false" selected="true" text="Translate wired" textOverrun="WORD_ELLIPSIS" />
+                        <Label layoutX="19.0" layoutY="-9.0" styleClass="themed-background" text="Room chat" />
                      </children></Pane>
-                  <Label layoutX="245.0" layoutY="14.0" style="-fx-background-color: #fff;" text="Room chat" />
                   <Pane layoutX="25.0" layoutY="22.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
                      <children>
                         <CheckBox fx:id="translateChatOut" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate outgoing" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateChatIn" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate incoming" textOverrun="WORD_ELLIPSIS" />
+                        <Label layoutX="17.0" layoutY="-9.0" styleClass="themed-background" text="Private chat &amp; invitations" />
                      </children>
                   </Pane>
-                  <Label layoutX="40.0" layoutY="14.0" style="-fx-background-color: #fff;" text="Private chat &amp; invitations" />
                   <Pane layoutX="25.0" layoutY="118.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
                      <children>
                         <CheckBox fx:id="translateRoomInfo" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate room info" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateNavigator" disable="true" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" text="Translate navigator" textOverrun="WORD_ELLIPSIS" />
+                        <Label layoutX="17.0" layoutY="-9.0" styleClass="themed-background" text="Room info" />
                      </children>
                   </Pane>
-                  <Label layoutX="40.0" layoutY="110.0" style="-fx-background-color: #fff;" text="Room info" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -71,4 +71,7 @@
           </content>
       </Tab>
   </tabs>
+   <padding>
+      <Insets bottom="7.0" />
+   </padding>
 </TabPane>
