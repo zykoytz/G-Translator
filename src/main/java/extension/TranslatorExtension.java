@@ -66,7 +66,7 @@ public class TranslatorExtension extends ExtensionForm {
         sourceLang.getSelectionModel().selectFirst();
 
         rdMicrosoft.selectedProperty().addListener((obs,old,val) -> apiMicrosoftInfo.setDisable(!val));
-        rdArgos.selectedProperty().addListener((obs,old,val) -> translateNavigator.setDisable(val));
+//        rdArgos.selectedProperty().addListener((obs,old,val) -> translateNavigator.setDisable(val));
     }
 
 

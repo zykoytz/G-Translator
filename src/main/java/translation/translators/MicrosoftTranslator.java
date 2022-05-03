@@ -28,6 +28,8 @@ public class MicrosoftTranslator extends Translator {
         return translate(Collections.singletonList(text), source, target).get(0);
     }
 
+
+
     @Override
     protected List<String> translate(List<String> texts, Language source, Language target) throws TranslationException {
         HttpUrl url = new HttpUrl.Builder()
@@ -51,7 +53,6 @@ public class MicrosoftTranslator extends Translator {
             bodyContents.put(translateText);
         }
 
-
         RequestBody body = RequestBody.create(mediaType, bodyContents.toString(1));
         Request request = new Request.Builder().url(url).post(body)
                 .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)
@@ -65,6 +66,11 @@ public class MicrosoftTranslator extends Translator {
             throw new TranslationException("Something went wrong..");
         }
         if (response.code() != 200) {
+            try {
+                String msg = response.body().string();
+                throw new TranslationException("Translation failed with code: " + response.code() + ", " + msg);
+            } catch (IOException ignore) {
+            }
             throw new TranslationException("Translation failed with code: " + response.code());
         }
 

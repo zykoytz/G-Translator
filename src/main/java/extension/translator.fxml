@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TabPane prefHeight="239.0" prefWidth="445.0" style="-fx-background-color: #fff;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="extension.TranslatorExtension">
+<TabPane prefHeight="239.0" prefWidth="445.0" style="-fx-background-color: #fff;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="extension.TranslatorExtension">
   <tabs>
     <Tab text="Translator">
         <content>
@@ -25,7 +25,7 @@
                <children>
                   <Pane layoutX="230.0" layoutY="22.0" prefHeight="125.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
                      <children>
-                        <CheckBox fx:id="showOriginal" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Show original" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="showOriginal" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" selected="true" text="Show original" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateOutgoing" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate outgoing" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateIncoming" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate incoming" textOverrun="WORD_ELLIPSIS" />
                         <CheckBox fx:id="translateWired" layoutX="14.0" layoutY="67.0" mnemonicParsing="false" selected="true" text="Translate wired" textOverrun="WORD_ELLIPSIS" />
@@ -41,7 +41,7 @@
                   <Pane layoutX="25.0" layoutY="118.0" prefHeight="74.0" prefWidth="184.0" style="-fx-border-width: 1px; -fx-border-color: #888; -fx-border-radius: 5px;">
                      <children>
                         <CheckBox fx:id="translateRoomInfo" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" selected="true" text="Translate room info" textOverrun="WORD_ELLIPSIS" />
-                        <CheckBox fx:id="translateNavigator" disable="true" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" selected="true" text="Translate navigator" textOverrun="WORD_ELLIPSIS" />
+                        <CheckBox fx:id="translateNavigator" disable="true" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" text="Translate navigator" textOverrun="WORD_ELLIPSIS" />
                      </children>
                   </Pane>
                   <Label layoutX="40.0" layoutY="110.0" style="-fx-background-color: #fff;" text="Room info" />
