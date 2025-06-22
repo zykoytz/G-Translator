@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.application.Platform;
 import misc.MaybeConsumer;
 import translation.TranslationException;
 import translation.Translator;
@@ -33,9 +34,16 @@ public class TranslatorExtension extends ExtensionForm {
     public Pane apiMicrosoftInfo;
     public TextField apiMicrosoftKey;
     public TextField apiMicrosoftRegion;
+
+    public Pane apiDeeplInfo;
+    public TextField apiDeeplKey;
+
     public RadioButton rdArgos;
     public RadioButton rdMicrosoft;
+    public RadioButton rdDeepl;
     public ToggleGroup tglAPI;
+
+    public Label apiError;
 
     private volatile int userId = -1;
     private HashMap<Integer, HEntity> users = new HashMap<>();
@@ -58,6 +66,10 @@ public class TranslatorExtension extends ExtensionForm {
 
     private volatile boolean isActive = false;
 
+    private void displayError(String message) {
+        Platform.runLater(() -> apiError.setText(message));
+    }
+
     public void initialize() {
         myLang.getItems().addAll(Language.values());
         myLang.getSelectionModel().selectFirst();
@@ -65,7 +77,16 @@ public class TranslatorExtension extends ExtensionForm {
         sourceLang.getItems().addAll(Language.values());
         sourceLang.getSelectionModel().selectFirst();
 
-        rdMicrosoft.selectedProperty().addListener((obs,old,val) -> apiMicrosoftInfo.setDisable(!val));
+        rdMicrosoft.selectedProperty().addListener((obs,old,val) -> {
+            apiMicrosoftInfo.setDisable(!val);
+            apiMicrosoftInfo.setVisible(val);
+        });
+        rdDeepl.selectedProperty().addListener((obs,old,val) -> {
+            apiDeeplInfo.setDisable(!val);
+            apiDeeplInfo.setVisible(val);
+        });
+        apiMicrosoftInfo.setVisible(rdMicrosoft.isSelected());
+        apiDeeplInfo.setVisible(rdDeepl.isSelected());
 //        rdArgos.selectedProperty().addListener((obs,old,val) -> translateNavigator.setDisable(val));
     }
 
@@ -171,11 +192,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(translations, getSourceLanguage(), getMyLanguage(), new MaybeConsumer<List<String>, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(List<String> strings) {
+                    displayError("");
                     for (int i = strings.size() - 1; i >= 0; i--) {
                         int index = translationIndexes.get(i);
                         String replacedText = strings.get(i);
@@ -201,11 +223,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(text, getSourceLanguage(), getMyLanguage(), new MaybeConsumer<String, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(String s) {
+                    displayError("");
                     packet.replaceString(10, s, StandardCharsets.UTF_8);
                     sendToClient(packet);
                 }
@@ -227,11 +250,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(text, getMyLanguage(), getSourceLanguage(), new MaybeConsumer<String, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(String s) {
+                    displayError("");
                     packet.replaceString(10, s, StandardCharsets.UTF_8);
                     sendToServer(packet);
                 }
@@ -254,11 +278,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(text, getMyLanguage(), getSourceLanguage(), new MaybeConsumer<String, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(String s) {
+                    displayError("");
                     packet.replaceString(textIndexInPacket, s, StandardCharsets.UTF_8);
                     sendToServer(packet);
                 }
@@ -292,11 +317,12 @@ public class TranslatorExtension extends ExtensionForm {
             TranslatorFactory.get(this).translate(Arrays.asList(originalRoomName, originalDesc), getSourceLanguage(), getMyLanguage(), new MaybeConsumer<List<String>, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(List<String> s) {
+                    displayError("");
                     packet.replaceString(roomDescPacketIndex, s.get(1), StandardCharsets.UTF_8);
                     packet.replaceString(roomNamePacketIndex, s.get(0), StandardCharsets.UTF_8);
                     sendToClient(packet);
@@ -361,11 +387,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(text, getMyLanguage(), getSourceLanguage(), new MaybeConsumer<String, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(String s) {
+                    displayError("");
                     packet.replaceString(6, isWhisper ? receiver + " " + s : s, StandardCharsets.UTF_8);
                     sendToServer(packet);
                 }
@@ -397,11 +424,12 @@ public class TranslatorExtension extends ExtensionForm {
             translator.translate(text, getSourceLanguage(), getMyLanguage(), new MaybeConsumer<String, TranslationException>() {
                 @Override
                 public void except(TranslationException exception) {
-                    System.out.println(exception.getReason());
+                    displayError(exception.getReason());
                 }
 
                 @Override
                 public void accept(String s) {
+                    displayError("");
                     copy.resetReadIndex();
                     copy.readInteger();
                     copy.replaceString(copy.getReadIndex(), s, StandardCharsets.UTF_8);
@@ -433,5 +461,9 @@ public class TranslatorExtension extends ExtensionForm {
 
     public String getMicrosoftRegion() {
         return apiMicrosoftRegion.getText();
+    }
+
+    public String getDeeplKey() {
+        return apiDeeplKey.getText();
     }
 }
