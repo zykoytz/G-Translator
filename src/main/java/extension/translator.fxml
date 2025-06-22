@@ -52,12 +52,13 @@
           <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <RadioButton fx:id="rdArgos" layoutX="23.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Argos Open Tech">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="tglAPI" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton fx:id="rdMicrosoft" layoutX="23.0" layoutY="57.0" mnemonicParsing="false" text="Microsoft Translator" toggleGroup="$tglAPI" />
-                  <Pane fx:id="apiMicrosoftInfo" disable="true" layoutX="42.0" layoutY="84.0" prefHeight="72.0" prefWidth="228.0">
+                <RadioButton fx:id="rdArgos" layoutX="23.0" layoutY="25.0" mnemonicParsing="false" selected="true" text="Argos Open Tech">
+                   <toggleGroup>
+                      <ToggleGroup fx:id="tglAPI" />
+                   </toggleGroup></RadioButton>
+                <RadioButton fx:id="rdMicrosoft" layoutX="23.0" layoutY="57.0" mnemonicParsing="false" text="Microsoft Translator" toggleGroup="$tglAPI" />
+                <RadioButton fx:id="rdDeepl" layoutX="23.0" layoutY="89.0" mnemonicParsing="false" text="DeepL" toggleGroup="$tglAPI" />
+                <Pane fx:id="apiMicrosoftInfo" disable="true" layoutX="42.0" layoutY="116.0" prefHeight="72.0" prefWidth="228.0">
                      <children>
                         <TextField fx:id="apiMicrosoftKey" layoutX="61.0" layoutY="6.0" />
                         <Label layoutX="10.0" layoutY="10.0" text="API key:" />
@@ -65,8 +66,16 @@
                         <Label layoutX="10.0" layoutY="44.0" text="Region:" />
                      </children>
                   </Pane>
-                  <Label layoutX="170.0" layoutY="57.0" text="-&gt; 2M free characters per month, fast" textFill="#000000ad" />
-                  <Label layoutX="170.0" layoutY="25.0" text="-&gt; Doesn't have Finnish &amp; Dutch, free but slow" textFill="#000000ad" />
+                <Pane fx:id="apiDeeplInfo" disable="true" layoutX="42.0" layoutY="116.0" prefHeight="40.0" prefWidth="228.0">
+                   <children>
+                      <TextField fx:id="apiDeeplKey" layoutX="61.0" layoutY="6.0" />
+                      <Label layoutX="10.0" layoutY="10.0" text="API key:" />
+                   </children>
+                </Pane>
+                <Label layoutX="170.0" layoutY="57.0" text="-&gt; 2M free characters per month, fast" textFill="#000000ad" />
+                <Label layoutX="170.0" layoutY="25.0" text="-&gt; Doesn't have Finnish &amp; Dutch, free but slow" textFill="#000000ad" />
+                <Label layoutX="170.0" layoutY="89.0" text="-&gt; Need API key" textFill="#000000ad" />
+                <Label fx:id="apiError" layoutX="42.0" layoutY="164.0" textFill="red" />
                </children></AnchorPane>
           </content>
       </Tab>
